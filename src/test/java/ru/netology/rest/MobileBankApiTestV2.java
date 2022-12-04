@@ -1,0 +1,24 @@
+package ru.netology.rest;
+
+import io.restassured.http.ContentType;
+import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Test;
+
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.*;
+
+class MobileBankApiTestV2 {
+    @Test
+    void shouldReturnDemoAccounts() {
+        given()
+                .baseUri("https://postman-echo.com")
+                .body("some data")
+                .when()
+                .post("/post")
+                .then()
+                .statusCode(201)
+                .contentType(ContentType.JSON)
+                .body("data", equalTo("some data"))
+        ;
+    }
+}
